@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mackenzie Hub | Game Cheats</title>
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -290,14 +289,14 @@
       background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--tertiary-color));
       border-radius: 3px;
     }
-    /* Карточки */
-    .cards {
+    /* Карточки и список игр */
+    .cards, .game-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       margin-top: 50px;
     }
-    .card {
+    .card, .game-item {
       background: rgba(17, 17, 22, 0.7);
       backdrop-filter: blur(10px);
       border-radius: 15px;
@@ -306,22 +305,24 @@
       transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
       position: relative;
       border: 1px solid rgba(255, 255, 255, 0.05);
-      transform-style: preserve-3d;
     }
-    .card:hover {
-      transform: translateY(-15px) rotateX(5deg) rotateY(-5deg);
+    .card:hover, .game-item:hover {
+      transform: translateY(-10px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 0, 85, 0.3), 0 0 20px rgba(0, 170, 255, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .card-img {
+    .card-img, .game-img {
       height: 200px;
       position: relative;
       overflow: hidden;
       background: url('/api/placeholder/500/300') no-repeat center center;
       background-size: cover;
     }
-    .card-content { padding: 25px; position: relative; }
-    .card-title {
+    .card-content, .game-content {
+      padding: 25px;
+      position: relative;
+    }
+    .card-title, .game-title {
       font-size: 24px;
       margin-bottom: 15px;
       font-weight: bold;
@@ -345,7 +346,7 @@
       line-height: 1.7;
       margin-bottom: 20px;
     }
-    .card-link {
+    .card-link, .download-btn {
       display: inline-block;
       color: var(--secondary-color);
       text-decoration: none;
@@ -359,97 +360,21 @@
       margin-left: 5px;
       transition: transform 0.3s ease;
     }
-    .card-link:hover {
+    .card-link:hover, .download-btn:hover {
       color: var(--primary-color);
       text-shadow: 0 0 8px rgba(255, 0, 85, 0.5);
     }
     .card-link:hover::after { transform: translateX(8px); }
-    /* Список игр */
-    .game-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 50px;
-    }
-    .game-item {
-      background: rgba(17, 17, 22, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .game-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 0, 85, 0.3), 0 0 20px rgba(0, 170, 255, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .game-img {
-      height: 160px;
-      position: relative;
-      overflow: hidden;
-      background: url('/api/placeholder/500/300') no-repeat center center;
-      background-size: cover;
-    }
-    .game-content { padding: 25px; position: relative; }
-    .game-title {
-      font-size: 20px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: var(--text-primary);
-      text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
-    }
-    .game-info {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
-    .game-category {
-      font-size: 14px;
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-    .game-date {
-      font-size: 14px;
-      color: #888888;
-    }
-    .cheat-features {
-      list-style: none;
-      margin-bottom: 15px;
-    }
-    .cheat-features li {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 5px;
-      position: relative;
-      padding-left: 20px;
-    }
-    .cheat-features li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--secondary-color);
-      text-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
-    }
     .download-btn {
-      display: inline-block;
       width: 100%;
       padding: 12px;
       background: rgba(25, 25, 30, 0.6);
-      color: var(--text-primary);
       text-align: center;
-      text-decoration: none;
       border-radius: 8px;
-      font-weight: bold;
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      transition: all 0.3s ease;
       border: 1px solid rgba(255, 255, 255, 0.05);
-      position: relative;
-      overflow: hidden;
     }
     .download-btn::before {
       content: "";
@@ -464,11 +389,6 @@
       z-index: -1;
     }
     .download-btn:hover::before { opacity: 1; }
-    .download-btn:hover {
-      border-color: transparent;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 0, 85, 0.3), 0 0 10px rgba(0, 170, 255, 0.3);
-      transform: translateY(-3px);
-    }
     .premium-badge, .free-badge {
       position: absolute;
       top: 15px;
@@ -489,6 +409,54 @@
     .free-badge {
       background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color));
       color: white;
+    }
+    /* Новые секции: Цены и функционал, Скриншоты */
+    .pricing-content {
+      display: flex;
+      justify-content: space-around;
+      gap: 40px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+    .price-list, .features-list {
+      background: rgba(17, 17, 22, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 15px;
+      flex: 1;
+      min-width: 280px;
+    }
+    .price-list h3, .features-list h3 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+    .price-list ul, .features-list ul {
+      list-style: none;
+    }
+    .price-list ul li, .features-list ul li {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: var(--text-secondary);
+      position: relative;
+      padding-left: 25px;
+    }
+    .price-list ul li::before, .features-list ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--secondary-color);
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .screenshot-item img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     /* Footer */
     footer {
@@ -638,16 +606,16 @@
         <ul class="menu" id="menu">
           <li><a href="#home">Главная</a></li>
           <li><a href="#games">Игры</a></li>
-          <li><a href="#feat">Особенности</a></li>
-          <li><a href="#Discrord">Discord</a></li>
-          <li><a href="#buyCheat">Скачать</a></li>
+          <li><a href="#features">Особенности</a></li>
+          <li><a href="#pricing">Цены</a></li>
+          <li><a href="#screenshots">Скриншоты</a></li>
+          <li><a href="#download">Скачать</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-
     <section id="home" class="hero">
       <div class="background-image"></div>
       <div class="particles" id="particles"></div>
@@ -660,7 +628,6 @@
       </div>
     </section>
 
-   
     <section id="features" class="section">
       <div class="container">
         <h2 class="section-title">Особенности</h2>
@@ -668,31 +635,30 @@
           <div class="card">
             <div class="card-img"></div>
             <div class="card-content">
-              <h3 class="card-title">идкидкидкидкидкидкидкидк</h3>
-              <p class="card-text">тксткстксткстксткстксткстксткатксткстксткстктататптктстктстктстыткстуктсткстктчыостктс</p>
+              <h3 class="card-title">Функционал №1</h3>
+              <p class="card-text">Описание функционала, который делает продукт уникальным и удобным.</p>
               <a href="#" class="card-link">Узнать больше</a>
             </div>
           </div>
           <div class="card">
             <div class="card-img"></div>
             <div class="card-content">
-              <h3 class="card-title">ткстксткатстксткстксткстксткстктсткатктст</h3>
-              <p class="card-text">тксткстксткстктаттатататататататкткткткткттктктктстст</p>
-              <a href="#" class="card-link">больше</a>
+              <h3 class="card-title">Функционал №2</h3>
+              <p class="card-text">Дополнительные возможности для продвинутых пользователей.</p>
+              <a href="#" class="card-link">Узнать больше</a>
             </div>
           </div>
           <div class="card">
             <div class="card-img"></div>
             <div class="card-content">
-              <h3 class="card-title">хахахахахахахххззхзхзхзхзхзх</h3>
-              <p class="card-text">Все просто круто и понятно</p>
-              <a href="#" class="card-link">больше</a>
+              <h3 class="card-title">Функционал №3</h3>
+              <p class="card-text">Инновационные решения для максимального комфорта.</p>
+              <a href="#" class="card-link">Узнать больше</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-
 
     <section id="games" class="section">
       <div class="container">
@@ -710,21 +676,61 @@
               <ul class="cheat-features">
                 <li>Украсть хоста</li>
                 <li>Бессмертие</li>
-                <li>ноу рекоил хзхзхзхзхзз</li>
+                <li>Ноу-рикол</li>
               </ul>
-              <a href="#" class="download-btn">ну купить наверное че еще</a>
+              <a href="#" class="download-btn">Ну купить наверное че еще</a>
             </div>
           </div>
-          
-        
-       
         </div>
       </div>
     </section>
 
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2 class="section-title">Цены и функционал</h2>
+        <div class="pricing-content">
+          <div class="price-list">
+            <h3>Цены</h3>
+            <ul>
+              <li>Базовая версия: $9.99</li>
+              <li>Премиум версия: $19.99</li>
+              <li>Профессиональная: $29.99</li>
+            </ul>
+          </div>
+          <div class="features-list">
+            <h3>Функционал</h3>
+            <ul>
+              <li>Автообновление</li>
+              <li>Поддержка мультиплеера</li>
+              <li>Интеграция с Discord</li>
+              <li>Высокая стабильность</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screenshots" class="section">
+      <div class="container">
+        <h2 class="section-title">Скриншоты</h2>
+        <div class="screenshots-grid">
+          <div class="screenshot-item">
+            <img src="/api/placeholder/800/450" alt="Скриншот 1">
+          </div>
+          <div class="screenshot-item">
+            <img src="/api/placeholder/800/450" alt="Скриншот 2">
+          </div>
+          <div class="screenshot-item">
+            <img src="/api/placeholder/800/450" alt="Скриншот 3">
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section id="download" class="section">
- <div class="game-list">
+      <div class="container">
+        <h2 class="section-title">Скачать</h2>
+        <div class="game-list">
           <div class="game-item">
             <span class="premium-badge">JustCoolCheat</span>
             <div class="game-img"></div>
@@ -737,13 +743,13 @@
               <ul class="cheat-features">
                 <li>Украсть хоста</li>
                 <li>Бессмертие</li>
-                <li>ноу рекоил хзхзхзхзхзз</li>
+                <li>Ноу-рикол</li>
               </ul>
-              <a href="#" class="download-btn">ну купить наверное че еще</a>
+              <a href="#" class="download-btn">Ну купить наверное че еще</a>
             </div>
           </div>
-          
-        
+        </div>
+      </div>
     </section>
   </main>
 
@@ -759,13 +765,11 @@
             <li><a href="#">Контакты</a></li>
           </ul>
         </div>
-   
         <div class="footer-column">
           <h3 class="footer-title">Соцсети</h3>
           <div class="social-links">
             <a href="#" class="social-link">Ds</a>
             <a href="#" class="social-link">Tg</a>
-          
           </div>
         </div>
       </div>
@@ -773,13 +777,11 @@
     </div>
   </footer>
 
-
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const menu = document.getElementById('menu');
     menuToggle.addEventListener('click', () => {
       menu.classList.toggle('active');
-
       menuToggle.classList.toggle('open');
     });
   </script>
